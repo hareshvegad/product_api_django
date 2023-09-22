@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Product List</h1>
+    <div id="product-list"></div>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '/api/',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    var productList = $('#product-list');
+                    $.each(data, function(index, product) {
+                        productList.append('<p>Name: ' + product.name + '</p>');
+                        productList.append('<p>Description: ' + product.description + '</p>');
+                        productList.append('<p>Price: $' + product.price + '</p>');
+                        productList.append('<hr>');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
